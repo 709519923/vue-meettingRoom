@@ -25,7 +25,7 @@
 
       <!-- 确认和取消按钮 -->
       <span slot="footer" class="dialog-footer">
-        <el-button @click="handleConfirm">确认</el-button>
+        <el-button @click="handleConfirm" type="primary">确认</el-button>
         <el-button @click="handleCancel">取消</el-button>
       </span>
     </el-dialog>

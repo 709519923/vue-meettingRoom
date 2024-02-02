@@ -41,7 +41,7 @@ export default {};
 
 .box-card {
   width: 100%; /* 修改为100%以适应不同屏幕宽度 */
-  max-width: 480px; /* 设置最大宽度，防止在大屏幕上过宽 */
+  max-width: 480px; /*设置最大宽度，防止在大屏幕上过宽 */
   margin: 10px auto; /* 居中显示 */
 }
 
