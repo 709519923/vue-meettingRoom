@@ -34,6 +34,7 @@
             type="primary"
             size="mini"
             @click="handleAgree(scope.$index, scope.row)"
+            :disabled="agreeButton"
           >
             同意
           </el-button>
@@ -42,6 +43,7 @@
             size="mini"
             type="danger"
             @click="handleRefuse(scope.$index, scope.row)"
+            :disabled="refuseButton"
           >
             拒绝
           </el-button>
@@ -49,9 +51,11 @@
 
         <!-- 检查申请状态是否为"审核已同意" -->
         <template v-else-if="scope.row.applicationStatus === '已审核通过'">
-          <el-button type="success" size="mini" disabled> 已同意 </el-button>
+          <el-button type="primary" size="mini" disabled> 已同意 </el-button>
         </template>
-
+        <template v-else-if="scope.row.applicationStatus === '拒绝'">
+          <el-button type="danger" size="mini" disabled> 已拒绝 </el-button>
+        </template>
         <!-- 如果需要，可以添加其他状态的条件判断 -->
       </template>
     </el-table-column>
@@ -64,6 +68,8 @@ export default {
   data() {
     return {
       tableData: [], // 存放从后端获取的多个用户数据
+      agreeButton: false,
+      refuseButton: false,
     };
   },
   mounted() {
@@ -94,21 +100,47 @@ export default {
       console.log(date);
       return date.toLocaleDateString("zh").replaceAll("/", "-");
     },
-    handleAgree(index, row) {
-      // 处理同意逻辑
-      // 更新申请状态为"审核已同意"
-      //写axios请求，如果写入成功，则设置，用try  catch来防止异常
-      //
-
-      this.$set(this.tableData, index, {
-        ...row,
-        applicationStatus: "审核已同意",
-      });
+    async handleAgree(index, row) {
+      try {
+        console.log(row.appointmentID);
+        const response = await this.$http.post("/update_appointment", {
+          // 请求参数:预约编号
+          appointmentID: row.appointmentID,
+          applicationStatus: "已审核通过",
+        });
+        this.$set(this.tableData, index, {
+          ...row,
+          applicationStatus: "已审核通过",
+        });
+      } catch (error) {
+        console.error("请求失败:", error);
+        // 处理请求失败的逻辑
+      }
     },
-    handleRefuse(index, row) {
-      // 处理拒绝逻辑
-      // 更新申请状态为"拒绝"
-      this.$set(this.tableData, index, { ...row, applicationStatus: "拒绝" });
+    async handleRefuse(index, row) {
+      try {
+        console.log(row.appointmentID);
+        const response = await this.$http.post("/update_appointment", {
+          // 请求参数:预约编号
+          appointmentID: row.appointmentID,
+          applicationStatus: "拒绝",
+        });
+        this.$set(this.tableData, index, {
+          ...row,
+          applicationStatus: "拒绝",
+        });
+      } catch (error) {
+        console.error("请求失败:", error);
+        // 处理请求失败的逻辑
+      }
+    },
+  },
+  computed: {
+    isButtonDisabled() {
+      return (
+        this.scope.row.applicationStatus == "已审核通过" ||
+        this.scope.row.applicationStatus == "拒绝"
+      );
     },
   },
 };

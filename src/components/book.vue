@@ -1,24 +1,29 @@
 <template>
   <div>
-    <el-date-picker
-      v-model="selectedDate"
-      :picker-options="pickerOptions"
-      v-if="showDatePicker"
-      @change="handleDateChange"
-    />
-    <el-button @click="openDatePicker" class="parent-button"
+    <el-row
+      ><el-date-picker
+        v-model="selectedDate"
+        :picker-options="pickerOptions"
+        v-if="showDatePicker"
+        @change="handleDateChange"
+        class="calendar"
+      />
+      <!-- <el-button @click="openDatePicker" class="parent-button"
       >选择日期</el-button
+    > --></el-row
     >
+
     <el-button
       v-for="hour in times"
       :key="hour"
       @click="handleButtonClick(hour)"
       :disabled="isButtonDisabled(hour)"
       class="child-button"
-    >
-      {{ hour }}:00 - {{ hour + 1 }}:00
+      ><el-badge is-dot class="item">
+        {{ hour }}:00 - {{ hour + 1 }}:00
+      </el-badge>
     </el-button>
-    <el-badge is-dot class="item">预定红点测试</el-badge>
+
     <!-- 表单提交按钮 -->
     <el-button type="primary" @click="submitForm" class="parent-button"
       >提交预定</el-button
@@ -34,7 +39,7 @@ export default {
       numberOfHours: 11, // 要生成的小时数
       disabledHours: [], // 存储被禁用的小时
       selectedDate: new Date(), // 选择的日期
-      showDatePicker: false, // 控制日期选择器显示/隐藏
+      showDatePicker: true, // 控制日期选择器显示/隐藏
       formData: {
         selectedTime: null, // 存储所选的时间
         selectedDate: null, // 存储所选的日期
@@ -68,6 +73,7 @@ export default {
     handleButtonClick(hour) {
       // 在点击时将按钮状态设置为禁用
       this.disabledHours.push(hour);
+      this.isDot = false;
       // 存储所选的时间
       this.formData.selectedTime = `${hour}:00 - ${hour + 1}:00`;
     },
@@ -80,7 +86,7 @@ export default {
       console.log("Selected date:", date);
       // 存储所选的日期
       this.formData.selectedDate = date;
-      this.showDatePicker = false;
+      // this.showDatePicker = false;
     },
     submitForm() {
       // 在这里提交表单，使用this.formData中的数据
@@ -107,13 +113,16 @@ export default {
   display: inline;
 }
 
-.parent-button {
+/* .parent-button {
   margin-top: 15px;
   display: block;
-}
+} */
 
 .item {
   margin-top: 10px;
   margin-right: 40px;
+}
+
+.calendar {
 }
 </style>

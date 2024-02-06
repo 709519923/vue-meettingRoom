@@ -1,6 +1,7 @@
 <script>
 import Movie from "./components/Movie.vue";
 import test from "./components/test.vue";
+import test2 from "./components/test2.vue";
 import book from "./components/book.vue";
 import record from "./components/record.vue";
 import axiosText from "./components/axiosText.vue";
@@ -12,6 +13,7 @@ export default {
   components: {
     Movie,
     test,
+    test2,
     book,
     record,
     axiosText,
@@ -27,9 +29,10 @@ export default {
       <!-- <test titile=" 1会议室" bookTime="book-time"></test> -->
       <!-- <axiosText></axiosText> -->
       <!-- <test></test> -->
+      <test2></test2>
       <!-- <record></record> -->
-      <!-- <book></book> -->
-      <queryList></queryList>
+      <book></book>
+      <!-- <queryList></queryList> -->
     </div>
   </div>
 </template>
