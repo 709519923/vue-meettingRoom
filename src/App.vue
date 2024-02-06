@@ -27,12 +27,15 @@ export default {
     <div class="container">
       <!-- <Movie titile="深分会议室预定系统（测试版）"></Movie> -->
       <!-- <test titile=" 1会议室" bookTime="book-time"></test> -->
-      <!-- <axiosText></axiosText> -->
-      <!-- <test></test> -->
+      <!-- <axiosText></axiosText>
+      <test></test>
       <test2></test2>
-      <!-- <record></record> -->
+      <record></record>
       <book></book>
-      <!-- <queryList></queryList> -->
+      <queryList></queryList> -->
+      <router-link to="/admin">预约审核</router-link>
+      <router-link to="/book">预定</router-link>
+      <router-view></router-view>
     </div>
   </div>
 </template>
