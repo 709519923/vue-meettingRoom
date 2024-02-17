@@ -3,6 +3,7 @@ import Movie from "./components/Movie.vue";
 import test from "./components/test.vue";
 import test2 from "./components/test2.vue";
 import book from "./components/book.vue";
+import book1 from "./components/book1.vue";
 import record from "./components/record.vue";
 import axiosText from "./components/axiosText.vue";
 import queryList from "./components/queryList.vue";
@@ -15,6 +16,7 @@ export default {
     test,
     test2,
     book,
+    book1,
     record,
     axiosText,
     queryList,
@@ -35,6 +37,7 @@ export default {
       <queryList></queryList> -->
       <router-link to="/admin">预约审核</router-link>
       <router-link to="/book">预定</router-link>
+      <router-link to="/book1">预定1</router-link>
       <router-view></router-view>
     </div>
   </div>
