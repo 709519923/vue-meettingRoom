@@ -2,6 +2,7 @@
 import Movie from "./components/Movie.vue";
 import test from "./components/test.vue";
 import test2 from "./components/test2.vue";
+import test3 from "./components/test3.vue";
 import book from "./components/book.vue";
 import book1 from "./components/book1.vue";
 import record from "./components/record.vue";
@@ -15,6 +16,7 @@ export default {
     Movie,
     test,
     test2,
+    test3,
     book,
     book1,
     record,
@@ -38,6 +40,7 @@ export default {
       <router-link to="/admin">预约审核</router-link>
       <router-link to="/book">预定</router-link>
       <router-link to="/book1">预定1</router-link>
+      <router-link to="/test3">test3</router-link>
       <router-view></router-view>
     </div>
   </div>

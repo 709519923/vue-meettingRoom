@@ -91,18 +91,18 @@ export default {
         });
     },
     formatDate(row, column) {
-      console.log(row[column.property]);
+      // console.log(row[column.property]);
       const timestamp = row[column.property];
-      console.log(timestamp);
+      // console.log(timestamp);
       // const milliseconds = timestamp / 1000;
       // console.log(milliseconds);
       const date = new Date(timestamp);
-      console.log(date);
+      // console.log(date);
       return date.toLocaleDateString("zh").replaceAll("/", "-");
     },
     async handleAgree(index, row) {
       try {
-        console.log(row.appointmentID);
+        // console.log(row.appointmentID);
         const response = await this.$http.post("/update_appointment", {
           // 请求参数:预约编号
           appointmentID: row.appointmentID,
